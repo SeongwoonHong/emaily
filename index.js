@@ -5,10 +5,11 @@ const passport = require('passport');
 const bodyParser = require('body-parser');
 const keys = require('./config/keys');
 require('./models/User');
+require('./models/Survey');
 require('./services/passport');
 
-mongoose.connect(keys.mongoURI);
-
+mongoose.Promise = global.Promise;
+mongoose.connect(keys.mongoURI, { useMongoClient: true })
 const app = express();
 
 app.use(bodyParser.json());
@@ -23,6 +24,7 @@ app.use(passport.session());
 
 require('./routes/authRoutes')(app);
 require('./routes/billingRoutes')(app);
+require('./routes/surveyRoutes')(app);
 
 if (process.env.NODE_ENV === 'production') {
   // Express will serve up production assets
@@ -37,6 +39,11 @@ if (process.env.NODE_ENV === 'production') {
   })
 }
 
+// 헤로크 슬립 안하게하는거.나중에 프로젝트 다 끝내고 디플로이할떄 도전해보야겠따.
+// var http = require("http");
+// setInterval(function() {
+//     http.get("http://<your app name>.herokuapp.com");
+// }, 300000);
 
 const PORT = process.env.PORT || 3003;
 app.listen(PORT, () => {
