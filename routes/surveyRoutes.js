@@ -22,11 +22,13 @@ module.exports = app => {
   })
 
   app.post('/api/surveys/webhooks', (req, res) => {
-    console.log('webhook is coming');
     const p = new Path('/api/surveys/:surveyId/:choice');
 
     _.chain(req.body)
       .map((event) => {
+        console.log(new URL());
+        console.log('=====')
+        console.log('event.url = ', event.url);
         const pathname = new URL(event.url).pathname;
         const match = p.test(pathname); // either be object or null
         if (match) {
