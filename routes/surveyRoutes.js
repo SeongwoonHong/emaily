@@ -26,7 +26,6 @@ module.exports = app => {
 
     _.chain(req.body)
       .map((event) => {
-        console.log(new URL());
         console.log('=====')
         console.log('event.url = ', event.url);
         const pathname = new URL(event.url).pathname;
