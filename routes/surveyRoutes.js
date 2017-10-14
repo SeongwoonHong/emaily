@@ -22,6 +22,7 @@ module.exports = app => {
   })
 
   app.post('/api/surveys/webhooks', (req, res) => {
+    console.log('webhook is coming');
     const p = new Path('/api/surveys/:surveyId/:choice');
 
     _.chain(req.body)

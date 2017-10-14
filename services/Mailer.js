@@ -7,7 +7,6 @@ class Mailer extends helper.Mail {
   constructor({ subject, recipients }, content) {
     super();
     if (process.env.NODE_ENV === 'production') {
-      console.log('environment is ' + process.env.NODE_ENV);
       this.sgApi = sendgrid(keys.sendGridKeyProd);
     } else {
       this.sgApi = sendgrid(keys.sendGridKey);
