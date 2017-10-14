@@ -1,12 +1,18 @@
 const sendgrid = require('sendgrid');
 const helper = sendgrid.mail;
 const keys = require('../config/keys');
+if (process.env.NODE_ENV === 'production') {
+
+}
 
 class Mailer extends helper.Mail {
   constructor({ subject, recipients }, content) {
     super();
-
-    this.sgApi = sendgrid(keys.sendGridKey);
+    if (process.env.NODE_ENV === 'production') {
+      this.sgApi = sendgrid(keys.sendGridKeyProd);
+    } else {
+      this.sgApi = sendgrid(keys.sendGridKey);
+    }
     this.from_email = new helper.Email('no-reply@emaily.com');
     this.subject = subject;
     this.body = new helper.Content('text/html', content);
