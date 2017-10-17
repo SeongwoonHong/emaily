@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import { withRouter } from 'react-router';
-import formFields from './formFields';
+import formFields from '../SurveyField/formFields';
 import * as actions from '../../actions';
 
 class SurveyFormReview extends Component {

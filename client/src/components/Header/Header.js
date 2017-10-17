@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import Payments from './Payments';
+import Payments from '../Payments/Payments';
+
 class Header extends Component {
   renderContent() {
     switch (this.props.auth) {

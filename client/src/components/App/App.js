@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import * as actions from '../actions';
+import * as actions from '../../actions';
 
-import Header from './Header';
-import Landing from './Landing';
-import Dashboard from './Dashboard';
-import SurveyNew from './surveys/SurveyNew';
+import Header from '../Header/Header';
+import Landing from '../Landing/Landing';
+import Dashboard from '../Dashboard/Dashboard';
+import SurveyNew from '../SurveyNew/SurveyNew';
 
 class App extends Component {
   componentDidMount() {
