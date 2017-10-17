@@ -7,10 +7,7 @@ import reduxThunk from 'redux-thunk';
 
 import App from './components/App';
 import reducers from './reducers';
-
-import axios from 'axios';
-window.axios = axios;
-
+import $ from 'jquery';
 const store = createStore(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), applyMiddleware(reduxThunk));
 
 ReactDOM.render(
