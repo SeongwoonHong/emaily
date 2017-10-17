@@ -8,7 +8,7 @@ class SurveyList extends Component {
     this.props.fetchSurveys();
   }
   showModal = () => {
-    console.log('show modal clicked');
+
   };
   renderSurveys = () => {
     return this.props.surveys.reverse().map(survey => {
@@ -35,9 +35,6 @@ class SurveyList extends Component {
     });
   }
   render() {
-    $(document).ready(function() {
-            $('.modal').modal();
-        });
     return (
       <div id="SurveyList">
         { this.renderSurveys() }

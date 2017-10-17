@@ -1,7 +1,10 @@
 #SurveyList {
-  .material-icons:hover {
-    color: red;
-    transition: 0.3s color ease-in;
+  .material-icons {
+    color: #ffab40;
+    &:hover {
+      color: red;
+      transition: 0.3s color ease-in;
+    }
   }
   .icons {
     cursor: pointer;
