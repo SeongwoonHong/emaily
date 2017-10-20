@@ -5,22 +5,27 @@ import { reduxForm, Field } from 'redux-form';
 import SurveyField from '../SurveyField/SurveyField';
 import validateEmails from '../../utils/validateEmails';
 import formFields from '../SurveyField/formFields';
+import './style.css';
 
 class SurveyForm extends Component {
+  componentDidMount = () => {
+
+  }
   renderFields() {
-    return _.map(formFields, ({ label, name }) => {
+    return _.map(formFields, ({ label, name }, index) => {
       return <Field // if redux form finds an error in error object below (inside validate function), it's error message is passed to custom component as prop named 'meta'. in this case surveyfield
                 component={SurveyField}
                 type="text"
                 label={label}
                 name={name}
                 key={name}
+                index={index / (index + 5)}
               />
     });
   }
   render() {
     return (
-      <div>
+      <div id="survey-form">
         <form onSubmit={ this.props.handleSubmit(this.props.onSurveySubmit) }>
           { this.renderFields() }
           <Link to="/surveys" className="red btn-flat left white-text">

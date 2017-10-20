@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import animate from 'gsap-promise';
 import Payments from '../Payments/Payments';
+import './style.css';
 
 class Header extends Component {
+  componentDidMount = () => {
+    animate.from(this.component, 0.5, { autoAlpha: 0});
+  }
+
   renderContent() {
     switch (this.props.auth) {
       case null:
@@ -26,7 +32,7 @@ class Header extends Component {
   }
   render() {
     return (
-      <nav>
+      <nav id="header" ref={ el => this.component = el }>
         <div className="nav-wrapper">
           <Link
             to={ this.props.auth ? '/surveys' : '/' }

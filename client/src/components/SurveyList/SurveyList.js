@@ -1,43 +1,63 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import TransitionGroup from 'react-transition-group-plus';
 import { fetchSurveys } from '../../actions';
-import './SurveyList.css';
+import SurveyItem from '../SurveyItem/SurveyItem';
+import './style.css';
 
 class SurveyList extends Component {
-  componentDidMount = () => {
-    this.props.fetchSurveys();
+  constructor(props) {
+    super(props);
+    this.state = {
+      isFetchDone: false
+    };
   }
-  showModal = () => {
+  componentDidMount = () => {
+    this.props.fetchSurveys()
+      .then(() => this.setState({ isFetchDone: true }));
+  }
 
-  };
   renderSurveys = () => {
-    return this.props.surveys.reverse().map(survey => {
+    return this.props.surveys.reverse().map((survey, index) => {
       return (
-        <div className="card darken-1" key={survey._id}>
-          <div className="card-content">
-            <span className="card-title">
-              { survey.title }
-            </span>
-            <p>
-              { survey.body }
-            </p>
-            <p className="right">
-              Sent On: { new Date(survey.dateSent).toLocaleDateString() }
-            </p>
-          </div>
-          <div className="card-action">
-            <a>Yes: { survey.yes }</a>
-            <a>No: { survey.no }</a>
-            <i onClick={ this.showModal } className="material-icons right icons">delete</i>
-          </div>
-        </div>
+        <SurveyItem
+          index={ index }
+          title={ survey.title }
+          body={ survey.body }
+          yes={ survey.yes }
+          no={ survey.no }
+          dateSent={ survey.dateSent }
+          key={ survey._id }
+        />
       );
     });
   }
+  noSurveys = () => {
+    return (
+      <div id="SurveyItem" className="card darken-1">
+        <div className="card-content">
+          <span className="card-title">
+            There is no survey
+          </span>
+          <p>
+            Try to create a new survey!
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   render() {
     return (
-      <div id="SurveyList">
-        { this.renderSurveys() }
+      <div id="surveyList">
+        <TransitionGroup component="div">
+          {
+            this.state.isFetchDone && this.props.surveys.length === 0
+            ? this.noSurveys()
+            : this.renderSurveys()
+          }
+        </TransitionGroup>
       </div>
     );
   }
@@ -45,5 +65,13 @@ class SurveyList extends Component {
 function mapStateToProps({ surveys }) {
   return { surveys }
 }
+SurveyList.defaultProps = {
+  fetchSurveys: () => console.warn('fetchSurveys is not defined'),
+  surveys: []
+};
 
+SurveyList.propTypes = {
+  fetchSurveys: PropTypes.func,
+  surveys: PropTypes.array
+};
 export default connect(mapStateToProps, { fetchSurveys })(SurveyList);

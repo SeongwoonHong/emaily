@@ -7,7 +7,7 @@ export default (emails) =>{
                       .map(email => email.trim())
                       .filter(email => !regex.test(email));
   if (invalidEmails.length) {
-    return `These emails are invalid :${invalidEmails}`;
+    return `These emails are invalid :${invalidEmails} (delimiter: comma)`;
   }
   return;
 }

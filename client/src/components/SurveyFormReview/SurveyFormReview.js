@@ -2,24 +2,47 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import { withRouter } from 'react-router';
+import SpanAnimatedText from '../SpanAnimatedText/SpanAnimatedText';
 import formFields from '../SurveyField/formFields';
 import * as actions from '../../actions';
+import './style.css';
 
 class SurveyFormReview extends Component {
   render() {
     const { onCancel, formValues, submitSurvey, history } = this.props;
-    const reviewFields = _.map(formFields, ({ name, label}) => {
+    // const reviewFields = _.map(formFields, ({ name, label}) => {
+    //   return (
+    //     <div key={name}>
+    //       <label>{ label }</label>
+    //       <div>
+    //         { formValues[name] }
+    //       </div>
+    //     </div>
+    //   );
+    // })
+    const reviewFields = _.map(formFields, ({ name, label}, index) => {
       return (
         <div key={name}>
-          <label>{ label }</label>
-          <div>
-            { formValues[name] }
+          <SpanAnimatedText
+            key={ name }
+            text={ label }
+            didMount
+            delay={ index / 10 }
+          />
+          <div style={{'color': '#009688', 'height': '35px'}}>
+            <SpanAnimatedText
+              key={ name }
+              text={ formValues[name] }
+              didMount
+              delay={ index / 10 }
+              fontSize= '1rem'
+            />
           </div>
         </div>
       );
     })
     return (
-      <div>
+      <div id="survey-form-review">
         <h5>Please confirm your entries</h5>
         { reviewFields }
         <button className="red btn-flat left white-text" onClick={ onCancel }>

@@ -1,0 +1,21 @@
+#survey-form-review {
+  .btn-flat {
+    &:hover {
+      -webkit-animation: bounce .3s infinite alternate;
+      -moz-animation: bounce .3s infinite alternate;
+      animation: bounce .3s infinite alternate;
+    }
+  }
+  h5 {
+    color: #a6a6a6;
+  }
+  @-webkit-keyframes bounce {
+  to { -webkit-transform: scale(1.1); }
+  }
+  @-moz-keyframes bounce {
+    to { -moz-transform: scale(1.1); }
+  }
+  @keyframes bounce {
+    to { transform: scale(1.1); }
+  }
+}
