@@ -9,9 +9,11 @@ require('./models/Survey');
 require('./services/passport');
 const http = require('http');
 
-setInterval(function() {
-  http.get('http://frozen-plains-88583.herokuapp.com');
-}, 300000);
+if (process.env.NODE_ENV === 'production') {
+  setInterval(function() {
+    http.get('http://frozen-plains-88583.herokuapp.com');
+  }, 1500000);
+}
 
 mongoose.Promise = global.Promise;
 mongoose.connect(keys.mongoURI, { useMongoClient: true })
