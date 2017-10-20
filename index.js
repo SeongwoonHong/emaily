@@ -7,6 +7,11 @@ const keys = require('./config/keys');
 require('./models/User');
 require('./models/Survey');
 require('./services/passport');
+const http = require('http');
+
+setInterval(function() {
+  http.get('http://frozen-plains-88583.herokuapp.com');
+}, 300000);
 
 mongoose.Promise = global.Promise;
 mongoose.connect(keys.mongoURI, { useMongoClient: true })
@@ -38,12 +43,6 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   })
 }
-
-// 헤로크 슬립 안하게하는거.나중에 프로젝트 다 끝내고 디플로이할떄 도전해보야겠따.
-// var http = require("http");
-// setInterval(function() {
-//     http.get("http://<your app name>.herokuapp.com");
-// }, 300000);
 
 const PORT = process.env.PORT || 3003;
 app.listen(PORT, () => {
