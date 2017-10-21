@@ -5,7 +5,7 @@ import SpanAnimatedText from '../SpanAnimatedText/SpanAnimatedText';
 
 class SurveyField extends Component {
   componentDidMount = () => {
-    animate.from(this.component, 1, { width: '120%', autoAlpha: 0, delay: this.props.index });
+    animate.from(this.component, 1, { width: '20%', autoAlpha: 0, delay: this.props.index });
   }
 
   render() {
