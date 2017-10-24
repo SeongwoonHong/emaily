@@ -19,8 +19,14 @@ class SurveyItem extends Component {
   componentWillAppear = (done) => {
     this.animateIn().then(done);
   }
+  onDeleteConfirm(surveyId) {
+    const res = window.confirm('Do you really want to delete?');
+    if (res) {
+      this.props.onDeleteHandler(surveyId);
+    }
+  }
   render() {
-    const { title, body, yes, no, dateSent, onDelete } = this.props;
+    const { title, body, yes, no, dateSent, index } = this.props;
     return (
       <div ref={ el => this.component = el } className={`card darken-1 surveyItem-${this.props.index+1}`}>
         <div className="card-content">
@@ -37,7 +43,7 @@ class SurveyItem extends Component {
         <div className="card-action">
           <a>Yes: { yes }</a>
           <a>No: { no }</a>
-          <i onClick={ () => alert('not implemented yet :)') } className="material-icons right icons">delete</i>
+          <i onClick={ () => this.onDeleteConfirm(index) } className="material-icons right icons">delete</i>
         </div>
       </div>
     );
@@ -48,8 +54,7 @@ SurveyItem.defaultProps = {
   body: 'body',
   yes: 0,
   no: 0,
-  lastResponded: 'lastResponded',
-  onDelete: () => console.warn('onDelete is not defined')
+  lastResponded: 'lastResponded'
 };
 
 SurveyItem.propTypes = {
@@ -58,7 +63,6 @@ SurveyItem.propTypes = {
   yes: PropTypes.number,
   no: PropTypes.number,
   dateSent: PropTypes.string,
-  lastResponded: PropTypes.string,
-  onDelete: PropTypes.func
+  lastResponded: PropTypes.string
 };
 export default SurveyItem;

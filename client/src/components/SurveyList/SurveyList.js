@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import TransitionGroup from 'react-transition-group-plus';
-import { fetchSurveys } from '../../actions';
+import { fetchSurveys, deleteSurvey } from '../../actions';
 import SurveyItem from '../SurveyItem/SurveyItem';
 import './style.css';
 
@@ -22,13 +22,14 @@ class SurveyList extends Component {
     return this.props.surveys.reverse().map((survey, index) => {
       return (
         <SurveyItem
-          index={ index }
+          index={ survey._id }
           title={ survey.title }
           body={ survey.body }
           yes={ survey.yes }
           no={ survey.no }
           dateSent={ survey.dateSent }
           key={ survey._id }
+          onDeleteHandler={ this.props.deleteSurvey }
         />
       );
     });
@@ -74,4 +75,4 @@ SurveyList.propTypes = {
   fetchSurveys: PropTypes.func,
   surveys: PropTypes.array
 };
-export default connect(mapStateToProps, { fetchSurveys })(SurveyList);
+export default connect(mapStateToProps, { fetchSurveys, deleteSurvey })(SurveyList);

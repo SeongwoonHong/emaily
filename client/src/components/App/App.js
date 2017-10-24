@@ -36,5 +36,11 @@ class App extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    auth: state.auth
+  };
+}
 // auth를 스토어에서 못가져오는게.. 초기 설정을 못해줘서 렌더 되자마자 undefined로 나오는거같음.. 잘 모르겟음 해결방법을.그래서 state로함.
-export default connect(null, actions)(App);
+export default connect(mapStateToProps, actions)(App);

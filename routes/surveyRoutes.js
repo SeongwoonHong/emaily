@@ -81,4 +81,10 @@ module.exports = app => {
       res.status(422).send(err);
     }
   });
+  app.post('/api/surveys/:surveyId', requireLogin, (req, res) => {
+    const { surveyId } = req.params;
+    Survey.findByIdAndRemove(surveyId, (err, result) => {
+        return res.send([result]); // 이게왜 어레이여야 되지..?? 이해안감. 어레이아니면 에러남;; 그리고 얘 리턴 안하면 바로 적용안됨. 왜그런지..
+    })
+  })
 };
