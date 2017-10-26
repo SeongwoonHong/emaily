@@ -11,13 +11,16 @@ class SurveyItem extends Component {
     return animate.to(this.component, 0.5, { autoAlpha: 1,width: '100%', delay: baseDelay });
   }
   animateOut = () => {
-
+    return animate.to(this.component, 0.5, { autoAlpha: 0, scale: '0' });
   }
   componentWillEnter = (done) => {
     this.animateIn().then(done);
   }
   componentWillAppear = (done) => {
     this.animateIn().then(done);
+  }
+  componentWillLeave = (done) => {
+    this.animateOut().then(done);
   }
   onDeleteConfirm(surveyId) {
     const res = window.confirm('Do you really want to delete?');
