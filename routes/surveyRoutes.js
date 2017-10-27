@@ -57,9 +57,10 @@ module.exports = app => {
   });
 
   app.post('/api/surveys', requireLogin, requireCredits, async (req, res) => {
-    const { title, subject, body, recipients } = req.body;
+    const { sender, title, subject, body, recipients } = req.body;
 
     const survey = new Survey({
+      sender,
       title,
       subject,
       body,
@@ -69,7 +70,7 @@ module.exports = app => {
     });
 
     // Great place to send an email
-    const mailer = new Mailer(survey, surveyTemplate(survey));
+    const mailer = new Mailer(survey, surveyTemplate(survey), sender);
     try {
       await mailer.send();
       await survey.save();

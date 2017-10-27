@@ -10,16 +10,7 @@ import './style.css';
 class SurveyFormReview extends Component {
   render() {
     const { onCancel, formValues, submitSurvey, history } = this.props;
-    // const reviewFields = _.map(formFields, ({ name, label}) => {
-    //   return (
-    //     <div key={name}>
-    //       <label>{ label }</label>
-    //       <div>
-    //         { formValues[name] }
-    //       </div>
-    //     </div>
-    //   );
-    // })
+
     const reviewFields = _.map(formFields, ({ name, label}, index) => {
       return (
         <div key={name}>
