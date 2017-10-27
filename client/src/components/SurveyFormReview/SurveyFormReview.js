@@ -13,14 +13,14 @@ class SurveyFormReview extends Component {
 
     const reviewFields = _.map(formFields, ({ name, label}, index) => {
       return (
-        <div key={name}>
+        <div key={name} style={{'font-weight': 'bold'}}>
           <SpanAnimatedText
             key={ name }
             text={ label }
             didMount
             delay={ index / 10 }
           />
-          <div style={{'color': '#009688', 'height': '35px'}}>
+          <div style={{'color': '#009688'}}>
             <SpanAnimatedText
               key={ name }
               text={ formValues[name] }
