@@ -1,9 +1,14 @@
 #header {
   .logo {
-    &:hover {
-      opacity: 0.7;
+    .material-icons {
+      font-size: 3rem;
+      margin-left: 1rem;
+      &:hover {
+        opacity: 0.7;
+      }
     }
   }
+
   .help {
     cursor: pointer;
     transition: opacity transform 0.5s ease-out;
@@ -13,8 +18,24 @@
     }
   }
   @media screen and (max-width: 500px) {
-    .brand-logo {
-      display: none;
+    .btn {
+      font-size: 0.8rem;
+    }
+  }
+  @media screen and (max-width: 390px) {
+    .logo {
+      .material-icons {
+        font-size: 2rem;
+        margin-left: -1rem;
+      }
+    }
+    .right {
+      .btn, li, a {
+        font-size: 0.7rem;
+      }
+      .btn {
+        padding: 0 1rem;
+      }
     }
   }
 }
