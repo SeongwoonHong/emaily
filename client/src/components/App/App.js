@@ -12,6 +12,7 @@ import SurveyNew from '../SurveyNew/SurveyNew';
 import NoCredits from '../NoCredits/NoCredits';
 import NotFound from '../NotFound/NotFound';
 import HowTo from '../HowTo/HowTo';
+import Login from '../Login/Login';
 
 class App extends Component {
   constructor(props) {
@@ -31,16 +32,12 @@ class App extends Component {
           <Header />
           <Switch>
             <Route exact path="/" component={ Landing } />
+            <Route exact path="/login" component={ Login } />
             <Route exact path="/surveys" render={()=> <Dashboard auth={this.state.auth} /> } />
             <Route path="/surveys/new" component={ SurveyNew } />
             <Route path="*" component={NotFound} />
           </Switch>
           <HowTo toggleModal={this.props.toggleModal} className={classnames({'appear': this.props.app.showModal})}/>
-            {/* {
-              this.props.app.showModal
-              ? <HowTo toggleModal={this.props.toggleModal} />
-              : null
-            } */}
         </div>
       </BrowserRouter>
     );

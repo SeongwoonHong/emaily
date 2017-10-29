@@ -1,0 +1,18 @@
+#login {
+  width: 60%;
+  margin: 3rem auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  .btn {
+    border-radius: 10px;
+    padding: 0 4rem;
+    margin-bottom: 1rem;
+    &:hover {
+      -webkit-animation: bounce .3s infinite alternate;
+      -moz-animation: bounce .3s infinite alternate;
+      animation: bounce .3s infinite alternate;
+      transform: scale(1.02);
+    }
+  }
+}

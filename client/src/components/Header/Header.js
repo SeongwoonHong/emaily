@@ -17,7 +17,7 @@ class Header extends Component {
         return;
       case false:
         return (
-          <li><a href="/auth/google">Login With Google</a></li>
+          <li><Link to="/login">Login</Link></li>
         );
       default:
         return (

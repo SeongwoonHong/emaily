@@ -28,7 +28,7 @@ passport.deserializeUser((id, done) => {
         return done(null, existingUser); // first argument is for error
       }
       // we don't have a user record with this ID, make a new record
-      const user = await new User({ googleId: profile.id }).save();
+      const user = await new User({ googleId: profile.id, displayName: profile.displayName, email: profile.emails }).save();
       done(null, user);
 
 
