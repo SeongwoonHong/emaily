@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import TransitionGroup from 'react-transition-group-plus';
+import classnames from 'classnames';
 import * as actions from '../../actions';
 
 import Header from '../Header/Header';
@@ -34,13 +35,12 @@ class App extends Component {
             <Route path="/surveys/new" component={ SurveyNew } />
             <Route path="*" component={NotFound} />
           </Switch>
-          <TransitionGroup>
-            {
+          <HowTo toggleModal={this.props.toggleModal} className={classnames({'appear': this.props.app.showModal})}/>
+            {/* {
               this.props.app.showModal
               ? <HowTo toggleModal={this.props.toggleModal} />
               : null
-            }
-          </TransitionGroup>
+            } */}
         </div>
       </BrowserRouter>
     );
