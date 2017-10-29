@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
+import TransitionGroup from 'react-transition-group-plus';
 import * as actions from '../../actions';
 
 import Header from '../Header/Header';
@@ -9,6 +10,7 @@ import Dashboard from '../Dashboard/Dashboard';
 import SurveyNew from '../SurveyNew/SurveyNew';
 import NoCredits from '../NoCredits/NoCredits';
 import NotFound from '../NotFound/NotFound';
+import HowTo from '../HowTo/HowTo';
 
 class App extends Component {
   constructor(props) {
@@ -26,11 +28,19 @@ class App extends Component {
       <BrowserRouter>
         <div className="container">
           <Header />
-          <Route exact path="/" component={ Landing } />
-          {/* <Route exact path="/surveys" component={ Dashboard } /> */}
-          <Route exact path="/surveys" render={()=> <Dashboard auth={this.state.auth} /> } />
-          { this.state.auth.credits > 1 ? <Route path="/surveys/new" component={ SurveyNew } /> : <Route path="/surveys/nocredits" component={ NoCredits } />}
-          {/* <Route exact path="*" component={NotFound} /> */}
+          <Switch>
+            <Route exact path="/" component={ Landing } />
+            <Route exact path="/surveys" render={()=> <Dashboard auth={this.state.auth} /> } />
+            <Route path="/surveys/new" component={ SurveyNew } />
+            <Route path="*" component={NotFound} />
+          </Switch>
+          <TransitionGroup>
+            {
+              this.props.app.showModal
+              ? <HowTo toggleModal={this.props.toggleModal} />
+              : null
+            }
+          </TransitionGroup>
         </div>
       </BrowserRouter>
     );
@@ -39,6 +49,7 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
+    app: state.app,
     auth: state.auth
   };
 }

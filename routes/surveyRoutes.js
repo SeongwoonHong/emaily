@@ -12,7 +12,8 @@ const Survey = mongoose.model('surveys');
 module.exports = app => {
   app.get('/api/surveys', requireLogin, async (req, res) => {
     const surveys = await Survey.find({ _user: req.user.id })
-      .select({ recipients: false });
+      .select({ recipients: false })
+      .sort({dateSent: -1});
 
     res.send(surveys);
   });
@@ -23,7 +24,6 @@ module.exports = app => {
 
   app.post('/api/surveys/webhooks', (req, res) => {
     const p = new Path('/api/surveys/:surveyId/:choice');
-
     _.chain(req.body)
       .map((event) => {
         const pathname = new URL(event.url).pathname;
@@ -58,7 +58,6 @@ module.exports = app => {
 
   app.post('/api/surveys', requireLogin, requireCredits, async (req, res) => {
     const { sender, title, subject, body, recipients } = req.body;
-
     const survey = new Survey({
       sender,
       title,
@@ -66,6 +65,7 @@ module.exports = app => {
       body,
       recipients: recipients.split(',').map(email => ({ email: email.trim() })),
       _user: req.user.id,
+      totalNumber: recipients.split(' ').length,
       dateSent: Date.now()
     });
 

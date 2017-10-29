@@ -9,7 +9,7 @@ class Dashboard extends React.Component {
       <div id="dashboard">
         <SurveyList />
         <div className="fixed-action-btn">
-          <Link to={ this.props.auth.credits > 1 ? "/surveys/new" : "/surveys/nocredits"} className="btn-floating btn-large red">
+          <Link to="/surveys/new" className="btn-floating btn-large red">
             <i className="material-icons">add</i>
           </Link>
         </div>

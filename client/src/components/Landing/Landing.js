@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const Landing = () => {
-  return (
-    <div style={{ textAlign: 'center'}}>
-      <h1>
-        This is Landing
-      </h1>
-      Being prepared...
-    </div>
-  );
+
+class Landing extends Component {
+  render() {
+    return (
+      <div>
+        Landing
+      </div>
+    );
+  }
 }
 
 export default Landing;

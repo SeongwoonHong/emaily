@@ -19,7 +19,7 @@ class SurveyList extends Component {
   }
 
   renderSurveys = () => {
-    return this.props.surveys.reverse().map((survey, index) => {
+    return this.props.surveys.map((survey, index) => {
       return (
         <SurveyItem
           index={ survey._id }
@@ -30,6 +30,7 @@ class SurveyList extends Component {
           dateSent={ survey.dateSent }
           key={ survey._id }
           onDeleteHandler={ this.props.deleteSurvey }
+          totalNumber={ survey.totalNumber }
         />
       );
     });

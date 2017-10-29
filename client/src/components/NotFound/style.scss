@@ -1,0 +1,19 @@
+#not-found {
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate;
+  .material-icons {
+    cursor: pointer;
+    transition: color 0.25s ease-in;
+    &:hover {
+      color: red;
+    }
+  }
+  @keyframes blink {
+    0% { opacity: 0.4; }
+    50% { opacity: 1;}
+    100% { opacity: 0.4;}
+  }
+}

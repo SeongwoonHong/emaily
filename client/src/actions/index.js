@@ -35,3 +35,9 @@ export const deleteSurvey = (surveyId) => async dispatch => {
 
   dispatch({ type: types.DELETE_SURVEY, payload: res.data});
 }
+
+export const toggleModal = () => {
+  return {
+    type: types.TOGGLE_MODAL
+  };
+}

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import animate from 'gsap-promise';
+import * as actions from '../../actions';
 import Payments from '../Payments/Payments';
 import './style.css';
 
@@ -38,10 +39,11 @@ class Header extends Component {
             to={ this.props.auth ? '/surveys' : '/' }
             className="left brand-logo logo"
           >
-            Emaily
+            Survey
           </Link>
           <ul className="right">
             { this.renderContent() }
+            <li><i className="material-icons help" onClick={ this.props.toggleModal }>help</i></li>
           </ul>
         </div>
       </nav>
@@ -51,4 +53,4 @@ class Header extends Component {
 function mapStateToProps({ auth }) { // or (state) and auth: state.auth
   return { auth };
 }
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps, actions)(Header);

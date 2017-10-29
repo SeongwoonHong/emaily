@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
 import SurveyForm from '../SurveyForm/SurveyForm';
 import SurveyFormReview from '../SurveyFormReview/SurveyFormReview';
+import NoCredits from '../NoCredits/NoCredits';
 
 class SurveyNew extends Component {
   constructor(props) {
@@ -14,6 +16,9 @@ class SurveyNew extends Component {
       return <SurveyFormReview
                 onCancel={() => this.setState({ showFormReview: false })}
               />;
+    }
+    if (this.props.auth.credits < 1) {
+      return <NoCredits />
     }
     return <SurveyForm
               onSurveySubmit={() => this.setState({ showFormReview: true })}
@@ -28,7 +33,15 @@ class SurveyNew extends Component {
     );
   }
 }
-
+function mapStateToProps(state) {
+  return {
+    auth: state.auth
+  }
+}
+SurveyNew = connect(
+  mapStateToProps,
+  null
+)(SurveyNew);
 export default reduxForm({
   form: 'surveyForm'
 })(SurveyNew);

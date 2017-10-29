@@ -29,7 +29,7 @@ class SurveyItem extends Component {
     }
   }
   render() {
-    const { title, body, yes, no, dateSent, index } = this.props;
+    const { title, body, yes, no, dateSent, index, totalNumber } = this.props;
     return (
       <div ref={ el => this.component = el } className={`card darken-1 surveyItem-${this.props.index+1}`}>
         <div className="card-content">
@@ -46,6 +46,7 @@ class SurveyItem extends Component {
         <div className="card-action">
           <a>Yes: { yes }</a>
           <a>No: { no }</a>
+          <span>out of { totalNumber }</span>
           <i onClick={ () => this.onDeleteConfirm(index) } className="material-icons right icons">delete</i>
         </div>
       </div>
