@@ -1,5 +1,8 @@
 #survey-form {
   margin-top: 10px;
+  border: 1px solid teal;
+  box-shadow: 5px 5px 20px;
+  padding: 30px 30px 60px 30px;
   .btn-flat {
     &:hover {
       -webkit-animation: bounce .3s infinite alternate;
@@ -15,5 +18,11 @@
   }
   @keyframes bounce {
     to { transform: scale(1.1); }
+  }
+  @media screen and (max-width: 360px) {
+    button, .btn-flat {
+      font-size: 0.8rem;
+      width: 90px;
+    }
   }
 }

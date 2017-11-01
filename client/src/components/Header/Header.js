@@ -17,7 +17,7 @@ class Header extends Component {
         return;
       case false:
         return (
-          <li><Link to="/login">Login</Link></li>
+          <li><a href="/auth/google">Login with google</a></li>
         );
       default:
         return (
@@ -33,7 +33,7 @@ class Header extends Component {
   }
   render() {
     return (
-      <nav id="header" ref={ el => this.component = el }>
+      <nav className="teal" id="header" ref={ el => this.component = el }>
         <div className="nav-wrapper">
           <Link
             to={ this.props.auth ? '/surveys' : '/' }

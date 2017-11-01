@@ -6,9 +6,6 @@ import * as actions from '../../actions';
 import './style.css';
 
 class HowTo extends Component {
-  componentDidMount = () => {
-    console.log('did mount')
-  }
   animateIn = () => {
     console.log('animatein')
     animate.from(this.component, 0.5, { autoAlpha: 0, top: '0%'});
@@ -45,7 +42,8 @@ class HowTo extends Component {
             <div className="card-content white-text">
               <span className="card-title"><i className="material-icons">announcement</i> &nbsp;How To <i className="material-icons close right" onClick={ this.onClickHandler}>cancel</i></span>
               <p>You are a product owner.</p>
-              <p> This is an application where you can send surveys to your customers and collect their responses whether they are satisfied with your product.</p>
+              <p>This is an application where you can send surveys (questions) to your customers and they participate your surveys by answering either YES or NO.</p>
+              <p>Their responses will be represented on your survey cards once they answer it.</p>
               <p>In order to create a survey, 1 credit is required.</p>
             </div>
             <div className="card-action">
