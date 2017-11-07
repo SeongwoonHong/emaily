@@ -10,7 +10,7 @@ import './style.css';
 class SurveyFormReview extends Component {
   render() {
     const { onCancel, formValues, submitSurvey, history } = this.props;
-
+    console.log(formValues);
     const reviewFields = _.map(formFields, ({ name, label}, index) => {
       return (
         <div key={name} style={{'fontWeight': 'bold'}}>

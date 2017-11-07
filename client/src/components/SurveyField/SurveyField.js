@@ -9,7 +9,7 @@ class SurveyField extends Component {
   }
 
   render() {
-    const { input, label, meta: { error, touched }, index} = this.props;
+    const { input, label, meta: { error, touched }, index, tag} = this.props;
     return (
       <div ref={ el => this.component = el } className="survey-field">
         <SpanAnimatedText
@@ -17,7 +17,13 @@ class SurveyField extends Component {
           didMount
           delay={ index }
         />
-        <input onFocus={ this.onFocusHandler } onBlur={ this.onBlurHandler } {...input} style={{ marginBottom: '5px', 'color': '#009688'}}/>
+        {
+          tag === 'textarea'
+          ?
+            <textarea onFocus={ this.onFocusHandler } onBlur={ this.onBlurHandler } {...input} style={{ marginBottom: '5px', 'color': '#009688'}}/> 
+          :
+            <input onFocus={ this.onFocusHandler } onBlur={ this.onBlurHandler } {...input} style={{ marginBottom: '5px', 'color': '#009688'}}/>
+        }
         <div className="red-text" style={{ height: '35px'}}>
           <TransitionGroup>
             {
