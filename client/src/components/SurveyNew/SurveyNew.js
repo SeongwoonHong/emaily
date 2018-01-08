@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import SurveyForm from '../SurveyForm/SurveyForm';
 import SurveyFormReview from '../SurveyFormReview/SurveyFormReview';
 import NoCredits from '../NoCredits/NoCredits';
@@ -12,6 +13,10 @@ class SurveyNew extends Component {
   }
 
   renderContent() {
+    if (!this.props.auth) {
+      console.log('login is required');
+      return this.props.history.push('/');
+    }
     if (this.state.showFormReview) {
       return <SurveyFormReview
                 onCancel={() => this.setState({ showFormReview: false })}
@@ -44,4 +49,4 @@ SurveyNew = connect(
 )(SurveyNew);
 export default reduxForm({
   form: 'surveyForm'
-})(SurveyNew);
+})(withRouter(SurveyNew));
