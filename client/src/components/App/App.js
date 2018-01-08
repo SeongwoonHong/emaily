@@ -31,7 +31,7 @@ class App extends Component {
         <div className="container">
           <Header />
           <Switch>
-            <Route exact path="/" component={ Landing } />
+            <Route exact path="/" component={ Dashboard } />
             <Route exact path="/login" component={ Login } />
             <Route exact path="/surveys" render={()=> <Dashboard auth={this.state.auth} /> } />
             <Route path="/surveys/new" component={ SurveyNew } />

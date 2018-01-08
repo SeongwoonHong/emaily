@@ -40,7 +40,7 @@ class SurveyList extends Component {
       <div id="SurveyItem" className="card darken-1">
         <div className="card-content">
           <span className="card-title">
-            There is no survey
+            There is no survey that you have created
           </span>
           <p>
             Try to create a new survey!
